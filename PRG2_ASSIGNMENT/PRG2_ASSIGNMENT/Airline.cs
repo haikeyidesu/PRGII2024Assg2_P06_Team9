@@ -35,54 +35,68 @@ namespace PRG2_ASSIGNMENT
         {
             double totalfees = 0;
             bool code = false;
-            if (Flight.Origin=="SIN")
+            foreach (Flight s in Flights.Values)
             {
-                totalfees += 500;
-            }
-            if (Flight.Destination = "SIN")
-            {
-                totalfees += 800;
-               
-            }
-            if (Code == "DDJB")
-            {
-                totalfees += 300;
-                code = true;
-            }
-            else if(Code == "CFFT")
-            {
-                totalfees += 150;
-                code = true;
-            }
-            else if (Code == "LWTT")
-            {
-                totalfees += 500;
-                code = true;
-            }
-            if (Flights.Count < 4)
-            {
-                totalfees -= 300;
-            }
-            foreach (var flight in Flights.Values)
-            {
-                if (flight.ExpectedTime.Hour < 11 || flight.ExpectedTime.Hour >= 21)
+                if (s.Origin == "SIN")
                 {
-                    totalfees += 110;
+                    totalfees += 500;
+                }
+                if (s.Destination == "SIN")
+                {
+                    totalfees += 800;
+
+                }
+                if (Code == "DDJB")
+                {
+                    totalfees += 300;
+                    code = true;
+                }
+                else if (Code == "CFFT")
+                {
+                    totalfees += 150;
+                    code = true;
+                }
+                else if (Code == "LWTT")
+                {
+                    totalfees += 500;
+                    code = true;
+                }
+
+                if (s.Origin == "DXB" ) 
+                {
+                    totalfees -= 25;
+                }
+                else if (s.Origin == "BKK")
+                {
+                    totalfees -= 25;
+                }
+                else if (s.Origin == "NRT")
+                {
+                    totalfees -= 25;
+                }
+                foreach (var flight in Flights.Values)
+                {
+                    if (flight.ExpectedTime.Hour < 11 || flight.ExpectedTime.Hour >= 21)
+                    {
+                        totalfees += 110;
+                    }
                 }
             }
-            if(code == false)
-            {
-                totalfees -= 50;
-            }
-            if (Flight.Origin == "DXB" || Flight.Origin == "BKK" || Flight.Origin = "NRT")
-            {
-                totalfees -= 25;
-            }
-            if (Flights.Count > 5)
-            {
-                return totalfees *= 0.97;
-            }
-            return totalfees;
+                if (Flights.Count < 4)
+                {
+                    totalfees -= 300;
+                }
+                if (code == false)
+                {
+                    totalfees -= 50;
+                }
+                
+                if (Flights.Count > 5)
+                {
+                    return totalfees *= 0.97;
+                }
+                return totalfees;
+            
         }
         public override string ToString()
         {

@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace PRG2_ASSIGNMENT
 {
-    internal class CFFTFlight:Flight
+    internal class LWTTFlight:Flight
     {
         public double RequestFee { get; set; }
         public override double CalculateFees()
         {
-           return RequestFee;
+            return RequestFee;
         }
         public override string ToString()
         {
             return base.ToString();
         }
 
-        public CFFTFlight() { }
-        public CFFTFlight(double requestFee, string Flightno, string origin, string dest, DateTime Expectedtime, string status) : base(Flightno, origin, dest, Expectedtime, status)
+        public LWTTFlight() { }
+        public LWTTFlight(double requestFee, string Flightno, string origin, string dest, DateTime Expectedtime, string status) : base(Flightno, origin, dest, Expectedtime, status)
         {
             RequestFee = requestFee;
         }

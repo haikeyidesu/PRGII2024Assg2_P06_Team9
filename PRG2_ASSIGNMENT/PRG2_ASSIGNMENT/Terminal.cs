@@ -57,5 +57,14 @@ namespace PRG2_ASSIGNMENT
         {
             return base.ToString();
         }
+
+        public Terminal (string name)
+        {
+            TerminalName = name;
+            Airlines = new Dictionary<string, Airline>();
+            Flights = new Dictionary<string, Flight>();
+            BoardingGates = new Dictionary<string, BoardingGate>();
+            GateFees = new Dictionary<string, double>();
+        }
     }
 }
