@@ -1,6 +1,10 @@
 ﻿using System.IO;
 using PRG2_ASSIGNMENT;
-
+//==========================================================
+// Student Number	: S10268302
+// Student Name	: Mah Kai Sheng
+// Partner Name	: Asher Ng
+//==========================================================
 Terminal Terminal = new Terminal("T5");
 using (StreamReader sr = new StreamReader("airlines.csv"))
 {

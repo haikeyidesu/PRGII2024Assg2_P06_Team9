@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//==========================================================
+// Student Number	: S10268302
+// Student Name	: Mah Kai Sheng
+// Partner Name	: Asher Ng
+//==========================================================
 namespace PRG2_ASSIGNMENT
 {
     internal class Terminal
