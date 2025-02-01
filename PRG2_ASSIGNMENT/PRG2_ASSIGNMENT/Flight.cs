@@ -16,7 +16,7 @@ namespace PRG2_ASSIGNMENT
             public string Origin { get; set; }
             public string Destination { get; set; }
             public DateTime ExpectedTime { get; set; }
-            public string Status { get; set; }
+            public string? Status { get; set; }
 
             public abstract double CalculateFees();
 

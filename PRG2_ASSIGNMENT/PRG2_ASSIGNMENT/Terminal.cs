@@ -39,11 +39,11 @@ namespace PRG2_ASSIGNMENT
         }
         public Airline GetAirlineFromFlight(Flight flight)
         {
-            foreach (var airline in Airlines.Values)
+            foreach(Airline s in Airlines.Values)
             {
-                if (airline.Flights.ContainsKey(flight.FlightNumber))
+                if (flight.FlightNumber.Substring(0, 2) == s.Code)
                 {
-                    return airline;
+                    return s;
                 }
             }
             return null;
