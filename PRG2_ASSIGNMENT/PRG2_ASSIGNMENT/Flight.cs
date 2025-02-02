@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 //==========================================================
 namespace PRG2_ASSIGNMENT
 {
-    abstract class Flight
+    abstract class Flight:IComparable<Flight>
     {
             public string FlightNumber { get; set; }
             public string Origin { get; set; }
             public string Destination { get; set; }
             public DateTime ExpectedTime { get; set; }
-            public string Status { get; set; }
+            public string? Status { get; set; }
 
             public abstract double CalculateFees();
 
@@ -30,5 +30,12 @@ namespace PRG2_ASSIGNMENT
                 this.Status = status;
             }
             public Flight() { }
+        public int CompareTo(Flight other)
+        {
+            if (other == null)
+                return 1;
+
+            return this.ExpectedTime.CompareTo(other.ExpectedTime);
+        }
     }
 }

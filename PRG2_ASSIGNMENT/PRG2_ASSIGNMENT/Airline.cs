@@ -23,12 +23,16 @@ namespace PRG2_ASSIGNMENT
         }
        public bool Addflight(Flight s)
         {
-            if (Flights.ContainsKey(s.FlightNumber))
+            try
             {
                 Flights.Add(s.FlightNumber, s);
                 return true;
             }
-            return false;
+            catch
+            {
+                Console.WriteLine("Unable to add flight.");
+                return false;
+            }
         }
 
         public bool Removeflight(Flight s)
