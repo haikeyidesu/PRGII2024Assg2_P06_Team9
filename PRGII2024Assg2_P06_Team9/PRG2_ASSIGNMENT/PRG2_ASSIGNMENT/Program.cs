@@ -61,7 +61,7 @@ using(StreamReader sr = new StreamReader("boardinggates.csv"))
 }
 
 
-//2 
+//2 (Kai SHeng)
 
 using (StreamReader sw = new StreamReader("flights.csv"))
 {
@@ -559,7 +559,7 @@ Flight ModifySpecialRequestCode(Flight oldFlight, string newCode)
 
 }
 
-//9 
+//9 (Kai Sheng)
 void SortedFlightInfo(Dictionary<String, Flight> flighdict, Dictionary<string, Airline> airlinesDictionary, Dictionary<String, BoardingGate> boardingatedict)
 {
     Console.WriteLine("=============================================");

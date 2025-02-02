@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PRG2_ASSIGNMENT")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9328f553344f917445d18f4cbe98337c3bda9f3e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0be7bafaaf3747de76b5da4a68f1151d2b9b737e")]
 [assembly: System.Reflection.AssemblyProductAttribute("PRG2_ASSIGNMENT")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PRG2_ASSIGNMENT")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

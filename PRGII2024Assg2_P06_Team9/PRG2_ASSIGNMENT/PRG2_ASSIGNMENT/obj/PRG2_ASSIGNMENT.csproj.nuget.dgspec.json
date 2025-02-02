@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\asher\\Documents\\PRG2\\PRGII2024Assg2_P06_Team9\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT.csproj": {}
+    "C:\\Y1S2\\PRG 2\\FINALS\\PRGII2024Assg2_P06_Team9\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\asher\\Documents\\PRG2\\PRGII2024Assg2_P06_Team9\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT.csproj": {
+    "C:\\Y1S2\\PRG 2\\FINALS\\PRGII2024Assg2_P06_Team9\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\asher\\Documents\\PRG2\\PRGII2024Assg2_P06_Team9\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT.csproj",
+        "projectUniqueName": "C:\\Y1S2\\PRG 2\\FINALS\\PRGII2024Assg2_P06_Team9\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT.csproj",
         "projectName": "PRG2_ASSIGNMENT",
-        "projectPath": "C:\\Users\\asher\\Documents\\PRG2\\PRGII2024Assg2_P06_Team9\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT.csproj",
-        "packagesPath": "C:\\Users\\asher\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\asher\\Documents\\PRG2\\PRGII2024Assg2_P06_Team9\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT\\obj\\",
+        "projectPath": "C:\\Y1S2\\PRG 2\\FINALS\\PRGII2024Assg2_P06_Team9\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Y1S2\\PRG 2\\FINALS\\PRGII2024Assg2_P06_Team9\\PRG2_ASSIGNMENT\\PRG2_ASSIGNMENT\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\asher\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
