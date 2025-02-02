@@ -35,9 +35,9 @@ namespace PRG2_ASSIGNMENT
             }
         }
 
-        public bool Removeflight(Flight s)
+        public bool Removeflight(string s)
         {
-            return Flights.Remove(s.FlightNumber);
+            return Flights.Remove(s);
         }
         public double CalculateFees()
         {
