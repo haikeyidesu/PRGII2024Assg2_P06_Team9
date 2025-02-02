@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 //==========================================================
 namespace PRG2_ASSIGNMENT
 {
-    abstract class Flight:IComparable<Flight>
+    public class Flight:IComparable<Flight>
     {
             public string FlightNumber { get; set; }
             public string Origin { get; set; }
@@ -18,7 +18,7 @@ namespace PRG2_ASSIGNMENT
             public DateTime ExpectedTime { get; set; }
             public string? Status { get; set; }
 
-            public abstract double CalculateFees();
+            public virtual double CalculateFees() { return 0; }
 
 
             public Flight(string Flightno, string origin, string dest, DateTime Expectedtime, string status)
