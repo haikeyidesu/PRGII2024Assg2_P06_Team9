@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "PRG2_ASSIGNMENT/1.0.0": {
+        "runtime": {
+          "PRG2_ASSIGNMENT.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PRG2_ASSIGNMENT/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
