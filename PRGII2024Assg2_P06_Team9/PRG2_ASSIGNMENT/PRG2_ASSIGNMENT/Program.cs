@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.IO;
@@ -60,6 +60,59 @@ using(StreamReader sr = new StreamReader("boardinggates.csv"))
     Console.WriteLine($"{count} Boarding Gates Loaded!");
 }
 
+//2 (Asher)
+/*
+// create dictionary to store flights
+Dictionary<string,Flight> flightDict = new Dictionary<string,Flight>();
+using (StreamReader sr = new StreamReader("flights.csv"))
+{
+    // read header first
+    sr.ReadLine();
+    while (!sr.EndOfStream && sr.ReadLine()!=null)
+    {
+        string[] flightDetails = sr.ReadLine().Split(",");
+
+        // convert format of flight properties
+        string flightNumber = flightDetails[0];
+        string origin = flightDetails[1];
+        string destination = flightDetails[2];
+        // use try to catch error converting string to datetime
+        try
+        {
+            DateTime expectedTime = Convert.ToDateTime(flightDetails[3]);
+            string specialRequestCode = flightDetails[4];
+        } catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            Console.WriteLine($"There was an error getting datetime for flight {flightNumber} from flights.csv. ");
+        }
+
+        // create flight object based on special requestcode
+        // default flight status is "On Time"
+        Flight newFlight;
+        string status = "On Time";
+        if (specialRequestCode == "CFFT")
+        {
+            newFlight = new CFFTFlight(150, flightNumber, origin, destination, expectedTime, status);
+        }
+        else if (specialRequestCode == "DDJB")
+        {
+            newFlight = new DDJBFlight(300, flightNumber, origin, destination, expectedTime, status);
+        }
+        else if (specialRequestCode == "LWTT")
+        {
+            newFlight = new LWTTFlight(500, flightNumber, origin, destination, expectedTime, status);
+        }
+        else
+        {
+            newFlight = new NORMFlight(flightNumber, origin, destination, expectedTime, status);
+        }
+
+        // add new flight to flight dicitonary
+        flightDict.Add(newFlight.FlightNumber,newFlight);
+    }
+}
+*/
 
 //2 (Kai SHeng)
 
@@ -110,7 +163,7 @@ using (StreamReader sw = new StreamReader("flights.csv"))
     Console.WriteLine($"{count} Flights Loaded!");
 }
 
-//3(Asher)
+//3 (Asher)
 void ListAllFlights(Terminal terminal)
 {
     Dictionary<string,Flight> flightDict = terminal.Flights;
@@ -157,7 +210,7 @@ void ListAllGates()
     }
 }
 
-//5(Asher)
+//5 (Asher)
 void AssignFlightBoardingGate(Terminal terminal)
 {
     // get dictionaries for easy reference
@@ -345,6 +398,85 @@ void AssignFlightBoardingGate(Terminal terminal)
     }
 }
 
+//6 (Asher)
+void CreateNewFlight(Terminal terminal)
+{
+    // list to store confirmation messages for each new flight made
+    List<string> confirmationMessages = new List<string>();
+
+    while (true)
+    {
+        // prompt user to enter the specifications for the new flight
+        // with validation
+
+        // flight number
+        string flightNumber = Console.ReadLine();
+        // origin
+        string origin = Console.ReadLine();
+        // destination
+        string destination = Console.ReadLine();
+        // expectedTime
+        string dateTime = Console.ReadLine();
+        DateTime expectedTime = new DateTime();
+
+        // status is set to "On Time" unless otherwise stated
+        string status = "On Time";
+
+        // ask for special request code
+        // if yes, get special request code
+        string specialRequestCode = Console.ReadLine();
+
+        // create the flight object based on special request code 
+
+        Flight newFlight;
+        if (specialRequestCode == "CFFT")
+        {
+            newFlight = new CFFTFlight(150, flightNumber, origin, destination, expectedTime, status);
+        }
+        else if (specialRequestCode == "DDJB")
+        {
+            newFlight = new DDJBFlight(300, flightNumber, origin, destination, expectedTime, status);
+        }
+        else if (specialRequestCode == "LWTT")
+        {
+            newFlight = new LWTTFlight(500, flightNumber, origin, destination, expectedTime, status);
+        }
+        else
+        {
+            newFlight = new NORMFlight(flightNumber, origin, destination, expectedTime, status);
+        }
+
+        // append newFlight to Flight dictionary in Terminal
+        // get Flight dictionary from terminal
+        terminal.Flights.Add(newFlight.FlightNumber, newFlight);
+
+        // append newFlight details to flight.csv
+        using (StreamWriter sw = new StreamWriter("flight.csv", true))
+        {
+            // append new line to the csv file
+            sw.WriteLine($"{flightNumber},{origin},{destination},{expectedTime},{specialRequestCode}");
+        }
+
+        // store confirmation message
+        confirmationMessages.Add($"Flight {flightNumber} successfully made!");
+
+        // ask user if they want to add more flights
+        // if user does not say yes, break loop by default
+        Console.Write("Do you want to add another flight? [Y/N]");
+        string continueLoop = Console.ReadLine().ToUpper();
+        if ( continueLoop != "Y")
+        {
+            break;
+        }
+    }
+
+    // display confirmation message
+    foreach (string confirmationMessage in confirmationMessages)
+    {
+        Console.WriteLine(confirmationMessage);
+    }
+    Console.WriteLine("All flights have been successfully added1");
+}
 
 
 //7(Kai sheng)
@@ -559,14 +691,69 @@ Flight ModifySpecialRequestCode(Flight oldFlight, string newCode)
 
 }
 
+//9 (Asher)
+/*
+void DisplaySortedScheduledFlights(Terminal terminal)
+{
+    // get flight, airlines and boarding gate dictionary
+    Dictionary<string, Flight> flightDict = terminal.Flights;
+    Dictionary <string, Airline> airlineDict = terminal.Airlines;
+    Dictionary <string, BoardingGate> boardingGateDict = terminal.BoardingGates;
+
+    // display all flights for  the day by earliest first
+    // IComparable<T> interface is implemented in Flight.cs
+    // display basic information of all flights
+
+    List<Flight> flightList = flightDict.Values.ToList();
+    // sort list using Icomparable interface
+    flightList.Sort();
+
+    // display header
+    Console.WriteLine($"{"Flight Number",-16}{"Origin",-21}{"Destination",-21}{"Expected Time",-24}{"Special Request Code",-24}{"Boarding Gate",-5}");
+    // display flight details
+    foreach (Flight flight in flightList)
+    {
+        // store flight details in variables for display
+        string flightNo = flight.FlightNumber;
+        string origin = flight.Origin;
+        string dest = flight.Destination;
+        DateTime eta = flight.ExpectedTime.ToUniversalTime();
+        string requestCode = "-";
+        if (flight is CFFTFlight)
+        {
+            requestCode = "CFFT";
+        } else if (flight is DDJBFlight)
+        {
+            requestCode = "DJJB";
+        } else if (flight is LWTTFlight)
+        {
+            requestCode = "DJJB";
+        }
+        // loop to find boarding gate assigned to flight
+        string gateName = "-";
+        foreach (BoardingGate gate in boardingGateDict.Values)
+        {
+            if (gate.flight != null && gate.flight.FlightNumber == flight.FlightNumber)
+            {
+                gateName = gate.GateName;
+                break;
+            }
+        }
+
+        // display all the details for each flight
+        Console.WriteLine($"{flightNo,-16}{origin,-21}{dest,-21}{eta,-24}{requestCode,-24}{gateName,-5}");
+    }
+}
+*/
+
 //9 (Kai Sheng)
-void SortedFlightInfo(Dictionary<String, Flight> flighdict, Dictionary<string, Airline> airlinesDictionary, Dictionary<String, BoardingGate> boardingatedict)
+void SortedFlightInfo(Dictionary<String, Flight> flightdict, Dictionary<string, Airline> airlinesDictionary, Dictionary<String, BoardingGate> boardingatedict)
 {
     Console.WriteLine("=============================================");
     Console.WriteLine("List of Flights for Changi Airport Terminal 5");
     Console.WriteLine("=============================================");
     Console.WriteLine($"{"Flight Number",-16}{"Airline Name",-23}{"Origin",-23}{"Destination",-23}{"Expected Departure/Arrival Time",-40}{"Status",-17}{"Boarding Gate",-23}");
-    List<Flight> Sortlis = new List<Flight>(flighdict.Values);
+    List<Flight> Sortlis = new List<Flight>(flightdict.Values);
     Sortlis.Sort();
     foreach (Flight kv in Sortlis)
     {
@@ -588,7 +775,6 @@ void SortedFlightInfo(Dictionary<String, Flight> flighdict, Dictionary<string, A
         else { Console.WriteLine($"{kv.FlightNumber,-16}{AirlineName,-23}{kv.Origin,-23}{kv.Destination,-23}{kv.ExpectedTime,-40}{"None",-17}{BoardinGate,-23}"); }
     }
 }
-
 
 //Advanced Features 
 //A (Kai Sheng)
@@ -660,6 +846,7 @@ void BulkassignFlights(Dictionary<string, Flight> flightsdict, Dictionary<string
 
     //Main Program to be executed
     bool condition = true;
+DisplaySortedScheduledFlights(Terminal);
 while (condition)
 {
     try
