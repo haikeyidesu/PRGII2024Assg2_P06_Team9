@@ -410,7 +410,32 @@ void CreateNewFlight(Terminal terminal)
         // with validation
 
         // flight number
-        string flightNumber = Console.ReadLine();
+        string flightNumber;
+        //validate flight number
+
+        while (true)
+        {
+            Console.Write("Enter flight number: ");
+            flightNumber = Console.ReadLine();
+            string[] flight;
+            try
+            {
+                flight = flightNumber.Split(" ");
+            } catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Console.WriteLine("The flight number format is wrong");
+                continue;
+            }
+            string airlineCode = flight[0];
+            if (!terminal.Airlines.Keys.ToList().Contains(airlineCode))
+            {
+                Console.WriteLine("The airline code in flight number is not valid");
+                continue;
+            }
+            break;
+        }
+
         // origin
         string origin = Console.ReadLine();
         // destination
@@ -846,7 +871,6 @@ void BulkassignFlights(Dictionary<string, Flight> flightsdict, Dictionary<string
 
     //Main Program to be executed
     bool condition = true;
-DisplaySortedScheduledFlights(Terminal);
 while (condition)
 {
     try
@@ -861,6 +885,14 @@ while (condition)
         else if (option == 2)
         {
             ListAllGates();
+        }
+        else if (option == 3)
+        {
+            AssignFlightBoardingGate(Terminal);
+        }
+        else if (option == 4)
+        {
+            CreateNewFlight(Terminal);
         }
         else if (option == 5)
         {
